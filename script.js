@@ -3,25 +3,6 @@ $(document).ready(onReady);
 let enemyHP = 100;
 let playerAP = 100;
 
-let player = {
-  arcane: {
-    cost: 12,
-    damage: 14,
-  },
-  entangle: {
-    cost: 23,
-    damage: 9,
-  },
-  dragon: {
-    cost: 38,
-    damage: 47,
-  },
-  starfire: {
-    cost: 33,
-    damage: 25,
-  },
-};
-
 function onReady() {
   console.log("jquery ready");
   // Make sure you check the index.html file!
@@ -36,86 +17,76 @@ function onReady() {
 }
 
 function handleArcane() {
-  enemyHP -= player.arcane.damage;
-  if (enemyHP > 0) {
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-  if (enemyHP <= 0) {
-    enemyHP = 0;
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-
-  playerAP -= player.arcane.cost;
-  if (playerAP > 0) {
-    $(".ap-text").text(`${playerAP} AP`);
-  }
-  if (playerAP <= 0) {
-    playerAP = 0;
-  }
+  playerAP -= 12;
+  enemyHP -= 14;
+  render();
 }
-
 function handleEntangle() {
-  enemyHP -= player.entangle.damage;
-  if (enemyHP > 0) {
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-  if (enemyHP <= 0) {
-    enemyHP = 0;
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-
-  playerAP -= player.entangle.cost;
-  if (playerAP > 0) {
-    $(".ap-text").text(`${playerAP} AP`);
-  }
-  if (playerAP <= 0) {
-    playerAP = 0;
-  }
+  playerAP -= 23;
+  enemyHP -= 9;
+  render();
 }
-
 function handleDragon() {
-  enemyHP -= player.dragon.damage;
-  if (enemyHP > 0) {
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-  if (enemyHP <= 0) {
-    enemyHP = 0;
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-
-  playerAP -= player.dragon.cost;
-  if (playerAP > 0) {
-    $(".ap-text").text(`${playerAP} AP`);
-  }
-  if (playerAP <= 0) {
-    playerAP = 0;
-  }
+  playerAP -= 38;
+  enemyHP -= 47;
+  render();
 }
-
 function handleStarFire() {
-  enemyHP -= player.starfire.damage;
-  if (enemyHP > 0) {
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-  if (enemyHP <= 0) {
-    enemyHP = 0;
-    $(".hp-text").text(`${enemyHP} HP`);
-  }
-
-  playerAP -= player.starfire.cost;
-  if (playerAP > 0) {
-    $(".ap-text").text(`${playerAP} AP`);
-  }
-  if (playerAP <= 0) {
-    playerAP = 0;
-  }
+  playerAP -= 33;
+  enemyHP -= 25;
+  render();
 }
+
+// ***  RENDER  ***
+
+function render() {
+  // conditional for playerAP
+  if (playerAP < 0) {
+    playerAP = 0;
+
+    // remove all attack buttons
+    $(".attack-btn").remove();
+    // add new ones with disabled type
+    $(".attacks").append(`
+      <button class="attack-btn arcane-scepter" type="button" disabled></button>
+      <button class="attack-btn entangle" type="button" disabled></button>
+      <button class="attack-btn dragon-blade"type="button" disabled></button>
+      <button class="attack-btn star-fire"type="button" disabled></button>
+    `);
+
+    // remove freaky fungus class
+    $(".freaky-fungus").remove();
+    // append new one for jump
+    $(".enemy").append(`
+      <div class="freaky-fungus jump">
+      </div>
+      `);
+  } // end if
+  
+  // PLAYER AP RENDER
+  $(".ap-text").text(`${playerAP} AP`);
+
+  
+  // conditional for enemy HP
+  if (enemyHP < 0) {
+    enemyHP = 0;
+
+    // remove class
+    $(".freaky-fungus").remove();
+    // append new one for dead
+    $(".enemy").append(`
+      <div class="freaky-fungus dead">
+      </div>
+    `);
+  } // end if
+  
+  // ENEMY HP RENDER
+  $(".hp-text").text(`${enemyHP} HP`);
+} // end render
 
 // I got bogged down in this...
 // it would have been cool to combine attack functions
 // I'll have to finish tomorrow to meet the css expectations
-// I just wanted some base functionality, I know I can clean up
-// and simplify the conditionals and the rest anyway
 
 // listener
 // $(".attack-btn").on('click', findClass)

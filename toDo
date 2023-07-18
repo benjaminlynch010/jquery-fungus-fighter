@@ -20,12 +20,13 @@
             - **AP Cost:** 33
             - **HP Damage:** 25
     
-[ ] render state changes to DOM
+[ X ] render state changes to DOM
+[ X ] create render function to handle state changes
     [ X ] update text above attack buttons
     [ X ] update text above enemy
     [ X ] if fungus HP = 0
-        [ ] replace walk class with dead class
-    [ ] if user AP = 0
-        [ ] replace walk class with jump class
-        [ ] give all attack buttons a disabled attribute
+        [ X ] replace walk class with dead class
+    [ X ] if user AP = 0
+        [ X ] replace walk class with jump class
+        [ X ] give all attack buttons a disabled attribute
 
