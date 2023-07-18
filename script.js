@@ -3,48 +3,91 @@ $(document).ready(onReady);
 let enemyHP = 100
 let userAP = 100
 
-let userAttacks = [
-    {
-        name: 'arcane',
+let player = {
+    arcane: {
         cost: 12,
         damage: 14
-        },
-    {
-        name: 'entangle',
+    },
+    entangle: {
         cost: 23,
         damage: 9
-     },
-    {
-        name: 'dragon',
+    },
+    dragon: {
         cost: 38,
         damage: 47
-        },
-    {
-        name: 'starfire',
+    },
+    starfire: {
         cost: 33,
         damage: 25
-        }
-    ]
+    }
+}
+
 
 function onReady() {
-    $(".attack-btn").on('click', handleAttack)
+     console.log('jquery ready')
     // Make sure you check the index.html file! 
     // There are lots of buttons and things ready for you to hook into here!
-    $.each(userAttacks, function(index, obj){ 
-        $.each(obj, function(key, value){
-            if (key == "starfire" ) {
-                console.log("HP Damage:", value)
-            }
-        });
-    });
+    
+    // *** HANDLERS ***
+ 
+    $(".attack-btn.arcane-scepter").on('click', handleArcane)
+    $(".attack-btn.entangle").on('click', handleEntangle)
+    $(".attack-btn.dragon-blade").on('click', handleDragon)
+    $(".attack-btn.star-fire").on('click', handleStarFire)
+
+
     // 🧠 Remember
     // - Handle events that ->
     // - Updates state which is ->
     // - Rendered to the DOM
 }
 
-function handleAttack() {
-    console.log('🗡️')
-
+function handleArcane() {
+enemyHP -= player.arcane.damage
+if (enemyHP > 0) {
+    $(".hp-text").text(`${enemyHP} HP`)
+}
+if (enemyHP <= 0) {
+    enemyHP = 0
+    $(".hp-text").text(`${enemyHP} HP`)
+}
 
 }
+
+function handleEntangle() {
+enemyHP -= player.arcane.damage
+if (enemyHP > 0) {
+    $(".hp-text").text(`${enemyHP} HP`)
+}
+if (enemyHP <= 0) {
+    enemyHP = 0
+    $(".hp-text").text(`${enemyHP} HP`)
+}
+}
+
+function handleDragon() {
+    enemyHP -= player.dragon.damage
+    if (enemyHP > 0) {
+        $(".hp-text").text(`${enemyHP} HP`)
+    }
+    if (enemyHP <= 0) {
+        enemyHP = 0
+        $(".hp-text").text(`${enemyHP} HP`)
+    }
+}
+
+function handleStarFire() {
+    enemyHP -= player.starfire.damage
+    if (enemyHP > 0) {
+        $(".hp-text").text(`${enemyHP} HP`)
+    }
+    if (enemyHP <= 0) {
+        enemyHP = 0
+        $(".hp-text").text(`${enemyHP} HP`)
+    }
+}
+// let getID = $(this).attr.("id")
+// return ID
+// user.attacks[getID].damage or cost
+
+
