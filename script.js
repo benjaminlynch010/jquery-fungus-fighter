@@ -1,7 +1,7 @@
-$(document).ready(onReady);
+$(document).ready(onReady)
 
 let enemyHP = 100
-let userAP = 100
+let playerAP = 100
 
 let player = {
     arcane: {
@@ -34,13 +34,8 @@ function onReady() {
     $(".attack-btn.entangle").on('click', handleEntangle)
     $(".attack-btn.dragon-blade").on('click', handleDragon)
     $(".attack-btn.star-fire").on('click', handleStarFire)
-
-
-    // 🧠 Remember
-    // - Handle events that ->
-    // - Updates state which is ->
-    // - Rendered to the DOM
 }
+
 
 function handleArcane() {
 enemyHP -= player.arcane.damage
@@ -52,16 +47,31 @@ if (enemyHP <= 0) {
     $(".hp-text").text(`${enemyHP} HP`)
 }
 
+playerAP -= player.arcane.cost
+if (playerAP > 0) {
+    $(".ap-text").text(`${playerAP} AP`)
+}
+if (playerAP <= 0) {
+    playerAP = 0
+}
 }
 
 function handleEntangle() {
-enemyHP -= player.arcane.damage
+enemyHP -= player.entangle.damage
 if (enemyHP > 0) {
     $(".hp-text").text(`${enemyHP} HP`)
 }
 if (enemyHP <= 0) {
     enemyHP = 0
     $(".hp-text").text(`${enemyHP} HP`)
+}
+
+playerAP -= player.entangle.cost
+if (playerAP > 0) {
+    $(".ap-text").text(`${playerAP} AP`)
+}
+if (playerAP <= 0) {
+    playerAP = 0
 }
 }
 
@@ -74,6 +84,14 @@ function handleDragon() {
         enemyHP = 0
         $(".hp-text").text(`${enemyHP} HP`)
     }
+
+    playerAP -= player.dragon.cost
+if (playerAP > 0) {
+    $(".ap-text").text(`${playerAP} AP`)
+}
+if (playerAP <= 0) {
+    playerAP = 0
+}
 }
 
 function handleStarFire() {
@@ -85,9 +103,34 @@ function handleStarFire() {
         enemyHP = 0
         $(".hp-text").text(`${enemyHP} HP`)
     }
-}
-// let getID = $(this).attr.("id")
-// return ID
-// user.attacks[getID].damage or cost
 
+    playerAP -= player.starfire.cost
+if (playerAP > 0) {
+    $(".ap-text").text(`${playerAP} AP`)
+}
+if (playerAP <= 0) {
+    playerAP = 0
+}
+}
+
+// I got bogged down in this...
+// it would have been cool to combine attack functions
+// I'll have to finish tomorrow to meet the css expectations 
+// I just wanted some base functionality, I know I can clean up
+// and simplify the conditionals and the rest anyway
+
+
+// listener
+// $(".attack-btn").on('click', findClass)
+
+// function to get each obj class???
+// function findClass() {
+//     (console.log('🗡️'))
+
+//     // used .attr to get the class for the object
+//     let objectClass = $(this).attr('class')
+//     console.log(objectClass)
+//     // but then I can't get the damage or cost value out
+//     console.log($(player[objectClass]['damage']).val())
+// }
 
