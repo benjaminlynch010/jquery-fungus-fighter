@@ -1,0 +1,31 @@
+[ ] state variables
+[ ] 
+
+[ ] handle click events
+    [ ] attack buttons on click
+      - (selector).on('click', run function to update state variables)
+      [ ] update state variable(s)
+      [ ] fungus loses hp (not < 0)
+      [ ] you lose ap (not < 0)
+        [ ] <button class="attack-btn arcane-scepter"></button>
+            - **AP Cost:** 12
+            - **HP Damage:** 14 
+        [ ] <button class="attack-btn entangle"></button>
+            - **AP Cost:** 23
+            - **HP Damage:** 9
+        [ ] <button class="attack-btn dragon-blade"></button>
+            - **AP Cost:** 38
+            - **HP Damage:** 47
+        [ ] <button class="attack-btn star-fire"></button>
+            - **AP Cost:** 33
+            - **HP Damage:** 25
+    
+[ ] render state changes to DOM
+    [ ] update text above attack buttons
+    [ ] update text above enemy
+    [ ] if fungus HP = 0
+        [ ] replace walk class with dead class
+    [ ] if user AP = 0
+        [ ] replace walk class with jump class
+        [ ] give all attack buttons a disabled attribute
+
